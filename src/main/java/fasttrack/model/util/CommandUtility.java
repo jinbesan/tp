@@ -3,6 +3,7 @@ package fasttrack.model.util;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Utility class which contains helper functions related to various commands, such as conversion of date and times
@@ -28,7 +29,7 @@ public class CommandUtility {
         };
         for (DateTimeFormatter formatter : formatters) {
             try {
-                return LocalDate.parse(input, formatter);
+                return LocalDate.parse(input, formatter.withResolverStyle(ResolverStyle.STRICT));
             } catch (DateTimeParseException ignored) {
                 continue;
             }
